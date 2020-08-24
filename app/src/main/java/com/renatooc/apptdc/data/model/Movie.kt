@@ -1,0 +1,24 @@
+package com.renatooc.apptdc.data.model
+
+import java.text.SimpleDateFormat
+import java.util.*
+
+// Movie object
+class Movie(
+    val id: Int,
+    val title: String,
+    val overview: String,
+    val genres: Array<MovieGenre>,
+    val release_date: String,
+    val poster_path: String,
+    val runtime: String,
+    val credits: Credits
+) {
+
+    @Transient var releaseDateFormat: Calendar = Calendar.getInstance()
+
+    init {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        releaseDateFormat.time = simpleDateFormat.parse(release_date)
+    }
+}
