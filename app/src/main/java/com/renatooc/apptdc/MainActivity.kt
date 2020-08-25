@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.renatooc.apptdc.data.api.ApiHelperImpl
 import com.renatooc.apptdc.data.api.TmdbFactory
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setupUI() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
         recyclerView.run {
             addItemDecoration(
                 DividerItemDecoration(

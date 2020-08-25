@@ -14,6 +14,19 @@ class MainAdapter(
     private val users: ArrayList<Movie>
 ) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        DataViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.movie_item, parent,
+                false
+            )
+        )
+
+    override fun getItemCount(): Int = users.size
+
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
+        holder.bind(users[position])
+
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
             val releaseData = itemView.movie_release_data
@@ -28,19 +41,6 @@ class MainAdapter(
                 .into(imageDescription)
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        DataViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.movie_item, parent,
-                false
-            )
-        )
-
-    override fun getItemCount(): Int = users.size
-
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(users[position])
 
     fun addData(list: MutableList<Movie>?) {
         if (list != null) {
