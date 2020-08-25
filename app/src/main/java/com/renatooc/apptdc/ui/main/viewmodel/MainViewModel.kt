@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import java.net.IDN
 
 @ExperimentalCoroutinesApi
 class MainViewModel(
@@ -43,6 +44,18 @@ class MainViewModel(
             _state.value = MainState.Loading
             _state.value = try {
                 MainState.Movies(repository.getPopularMovies())
+            } catch (e: Exception) {
+                MainState.Error(e.localizedMessage)
+            }
+            Log.e("TESTE", "TESTE" + _state.value.toString())
+        }
+    }
+
+     fun fetchMovie(id: Int) {
+        viewModelScope.launch {
+            _state.value = MainState.Loading
+            _state.value = try {
+                MainState.MovieSingle(repository.getMovie(id))
             } catch (e: Exception) {
                 MainState.Error(e.localizedMessage)
             }
