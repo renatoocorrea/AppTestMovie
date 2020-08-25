@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderList(users: List<Movie>) {
+    private fun renderList(users: MutableList<Movie>?) {
         recyclerView.visibility = View.VISIBLE
         users.let { listOfUsers -> listOfUsers.let { adapter.addData(it) } }
         adapter.notifyDataSetChanged()

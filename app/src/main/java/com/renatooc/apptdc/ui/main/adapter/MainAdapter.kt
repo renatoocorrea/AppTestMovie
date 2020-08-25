@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.renatooc.apptdc.R
 import com.renatooc.apptdc.data.model.Movie
+import com.renatooc.apptdc.util.Constants.Companion.MOVIE_BASE_URL
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MainAdapter(
@@ -14,8 +15,17 @@ class MainAdapter(
 ) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(user: Movie) {
-            itemView.movie_name.text = user.title
+        fun bind(movie: Movie) {
+            val releaseData = itemView.movie_release_data
+            val imageDescription = itemView.movie_image
+            val movieName = itemView.movie_name
+
+            releaseData.text = movie.release_date
+            movieName.text  = movie.title
+
+            Picasso.get().load(MOVIE_BASE_URL + movie.poster_path)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(imageDescription)
         }
     }
 
@@ -32,8 +42,10 @@ class MainAdapter(
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
         holder.bind(users[position])
 
-    fun addData(list: List<Movie>) {
-        users.addAll(list)
+    fun addData(list: MutableList<Movie>?) {
+        if (list != null) {
+            users.addAll(list)
+        }
     }
 
 }

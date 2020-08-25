@@ -9,10 +9,10 @@ import retrofit2.http.Path
 interface ApiService {
     //Get popular movies list as a response.
     @GET("movie/popular")
-    fun getPopularMovies(): MutableList<Movie>
+    fun getPopularMovies(): Deferred<Response<MovieResponse>>
 
     @GET("movie/{id}")
-    fun getMovieById(@Path("id") id:Int): Movie
+    fun getMovieById(@Path("id") id:Int): Deferred<Response<Movie>>
 }
 
 // Just to retrive the movies list from the request @get.

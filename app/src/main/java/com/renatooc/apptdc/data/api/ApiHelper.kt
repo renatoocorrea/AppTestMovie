@@ -4,7 +4,7 @@ import com.renatooc.apptdc.data.model.Movie
 
 interface ApiHelper {
 
-    suspend fun getPopularMovies(): List<Movie>
+    suspend fun getPopularMovies(): MutableList<Movie>?
 
     suspend fun getMovie(id: Int): Movie?
 
