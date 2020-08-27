@@ -77,48 +77,51 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
     private fun observeViewModel() {
         lifecycleScope.launch {
             mainViewModel.state.collect {
-                when (it) {
-                    is MainState.Idle -> {
-
-                    }
-                    is MainState.Loading -> {
-                        buttonFetchUser.visibility = View.GONE
-                        progressBar.visibility = View.VISIBLE
-                        movieImage.visibility = View.GONE
-                        movieTitle.visibility = View.GONE
-                        movieResume.visibility = View.GONE
-                    }
-
-                    is MainState.Movies -> {
-                        progressBar.visibility = View.GONE
-                        buttonFetchUser.visibility = View.GONE
-                        movieImage.visibility = View.GONE
-                        movieTitle.visibility = View.GONE
-                        movieResume.visibility = View.GONE
-                        renderList(it.user)
-                    }
-                    is MainState.Error -> {
-                        progressBar.visibility = View.GONE
-                        buttonFetchUser.visibility = View.VISIBLE
-                        Toast.makeText(this@MainActivity, it.error, Toast.LENGTH_LONG).show()
-                        movieImage.visibility = View.GONE
-                        movieTitle.visibility = View.GONE
-                        movieResume.visibility = View.GONE
-                    }
-                    is MainState.MovieSingle -> {
-                        progressBar.visibility = View.GONE
-                        buttonFetchUser.visibility = View.GONE
-                        movieImage.visibility = View.VISIBLE
-                        movieTitle.visibility = View.VISIBLE
-                        movieResume.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
-                        renderMovie(it.movie)
-                    }
-                }
+               render(it)
             }
         }
     }
 
+    fun render(state: MainState){
+        when (state) {
+            is MainState.Idle -> {
+                //
+            }
+            is MainState.Loading -> {
+                buttonFetchUser.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
+                movieImage.visibility = View.GONE
+                movieTitle.visibility = View.GONE
+                movieResume.visibility = View.GONE
+            }
+
+            is MainState.Movies -> {
+                progressBar.visibility = View.GONE
+                buttonFetchUser.visibility = View.GONE
+                movieImage.visibility = View.GONE
+                movieTitle.visibility = View.GONE
+                movieResume.visibility = View.GONE
+                renderList(state.moviesList)
+            }
+            is MainState.Error -> {
+                progressBar.visibility = View.GONE
+                buttonFetchUser.visibility = View.VISIBLE
+                Toast.makeText(this@MainActivity, state.error, Toast.LENGTH_LONG).show()
+                movieImage.visibility = View.GONE
+                movieTitle.visibility = View.GONE
+                movieResume.visibility = View.GONE
+            }
+            is MainState.MovieSingle -> {
+                progressBar.visibility = View.GONE
+                buttonFetchUser.visibility = View.GONE
+                movieImage.visibility = View.VISIBLE
+                movieTitle.visibility = View.VISIBLE
+                movieResume.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+                renderMovie(state.movie)
+            }
+        }
+    }
     private fun renderList(users: MutableList<Movie>?) {
         recyclerView.visibility = View.VISIBLE
         users.let { listOfUsers -> listOfUsers.let { adapter.addData(it) } }

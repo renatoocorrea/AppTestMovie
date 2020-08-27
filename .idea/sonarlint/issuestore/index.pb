@@ -13,8 +13,6 @@ g
 7app/src/main/java/com/renatooc/apptdc/util/Constants.kt,f/5/f50ba0a540fa104b1d2af2483dd10ae286353097
 n
 >app/src/main/java/com/renatooc/apptdc/util/ViewModelFactory.kt,4/a/4a56b067c62fe3d44f8d692189519e68c2bb96f4
-v
-Fapp/src/main/java/com/renatooc/apptdc/ui/main/adapter/MoviesAdapter.kt,8/6/86092f8dec405695712e32b40a386e70ef29fabc
 r
 Bapp/src/main/java/com/renatooc/apptdc/ui/main/intent/MainIntent.kt,f/9/f94d3bf30ea3507e1e24431890d8f396bafab8de
 e
@@ -43,3 +41,13 @@ o
 ?app/src/main/java/com/renatooc/apptdc/data/repository/Result.kt,8/2/82444220058251e6899341bd77dcb3ed509814ee
 w
 Gapp/src/main/java/com/renatooc/apptdc/data/repository/BaseRepository.kt,b/3/b361d665f2a8bca17b582f9d121948a19a13026e
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+V
+&app/src/main/res/layout/movie_item.xml,a/1/a1ceff8a3b67a540e62ce938c3549c4a5d93ae83
+s
+Capp/src/main/java/com/renatooc/apptdc/ui/main/MovieClickListener.kt,1/a/1acded60e30c0c3deab3879d771368cbad39220f
+Y
+)app/src/main/res/layout/activity_main.xml,7/6/76b07e40f24cce093536731477540f12e7da3cb6
+h
+8app/src/test/java/com/renatooc/apptdc/ExampleUnitTest.kt,0/6/067cc0d2128402825ff427766951d756e4472c6b

@@ -39,7 +39,7 @@ class MainViewModel(
         }
     }
 
-    private fun fetchPopularMovies() {
+    fun fetchPopularMovies() {
         viewModelScope.launch {
             _state.value = MainState.Loading
             _state.value = try {
@@ -47,7 +47,6 @@ class MainViewModel(
             } catch (e: Exception) {
                 MainState.Error(e.localizedMessage)
             }
-            Log.e("TESTE", "TESTE" + _state.value.toString())
         }
     }
 
@@ -59,7 +58,6 @@ class MainViewModel(
             } catch (e: Exception) {
                 MainState.Error(e.localizedMessage)
             }
-            Log.e("TESTE", "TESTE" + _state.value.toString())
         }
     }
 }
